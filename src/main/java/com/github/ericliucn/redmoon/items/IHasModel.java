@@ -10,4 +10,8 @@ public interface IHasModel {
         ModelResourceLocation location = new ModelResourceLocation(name, "inventory");
         Main.PROXY.registerItemModel(item, meta, location);
     }
+
+    default String getName(Item item){
+        return item.getRegistryName().getPath();
+    }
 }
