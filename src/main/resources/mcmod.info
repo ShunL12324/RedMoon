@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "RedMoon",
+        "name": "RedMoon",
+        "description": "For TORM",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["EricLiucn"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
