@@ -1,5 +1,7 @@
 package com.github.ericliucn.redmoon.proxy;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -20,6 +22,10 @@ public class CommonProxy {
     }
 
     public void serverstarting(FMLServerStartingEvent event){
+
+    }
+
+    public void registerItemModel(Item item, int meta, ModelResourceLocation location){
 
     }
 
