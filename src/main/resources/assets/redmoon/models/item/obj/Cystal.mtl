@@ -1,0 +1,8 @@
+newmtl primitive (Instance)
+Kd 0.25 0.6509804 0.9137255
+map_Kd Cystal_.png
+illum 2
+
+newmtl Voxel
+illum 2
+

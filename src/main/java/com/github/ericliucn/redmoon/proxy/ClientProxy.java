@@ -1,20 +1,23 @@
 package com.github.ericliucn.redmoon.proxy;
 
+import com.github.ericliucn.redmoon.Main;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import vazkii.arl.util.ProxyRegistry;
 
 public class ClientProxy extends CommonProxy{
 
     @Override
     public void preinit(FMLPreInitializationEvent event) {
         super.preinit(event);
+        OBJLoader.INSTANCE.addDomain(Main.MOD_ID);
     }
 
     @Override

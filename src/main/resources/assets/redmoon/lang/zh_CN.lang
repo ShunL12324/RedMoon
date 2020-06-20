@@ -1,2 +1,6 @@
 # item
-item.redmoon:energy_stone_comman.name="§能量晶石"
+item.redmoon:energy_stone_common.name=能量晶石
+item.redmoon:energy_stone_good.name=能量晶石
+item.redmoon:energy_stone_excellent.name=能量晶石
+item.redmoon:energy_stone_epic.name=能量晶石
+item.redmoon:energy_stone_legend.name=能量晶石
