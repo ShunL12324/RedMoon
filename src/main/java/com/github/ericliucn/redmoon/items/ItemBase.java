@@ -9,6 +9,7 @@ import java.util.Objects;
 
 public class ItemBase extends ItemMod {
 
+    
 
     public ItemBase(String name, String... variants) {
         super(name, variants);
