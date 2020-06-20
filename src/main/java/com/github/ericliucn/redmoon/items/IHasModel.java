@@ -4,6 +4,8 @@ import com.github.ericliucn.redmoon.Main;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 
+import java.util.Objects;
+
 public interface IHasModel {
 
     default void registerModel(Item item, String name, int meta){
@@ -12,6 +14,6 @@ public interface IHasModel {
     }
 
     default String getName(Item item){
-        return item.getRegistryName().getPath();
+        return Objects.requireNonNull(item.getRegistryName()).getPath();
     }
 }
