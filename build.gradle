@@ -37,8 +37,8 @@ repositories {
 }
 
 dependencies {
-    compile 'codechicken:CodeChickenLib:1.12.2-3.2.3.358:universal'
-    compile 'vazkii.autoreglib:AutoRegLib:1.3-33.34'
+    deobfCompile 'codechicken:CodeChickenLib:1.12.2-3.2.3.358:universal'
+    deobfCompile 'vazkii.autoreglib:AutoRegLib:1.3-33.34'
 }
 
 processResources {

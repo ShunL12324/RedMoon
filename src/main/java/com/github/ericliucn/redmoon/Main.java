@@ -27,6 +27,8 @@ public class Main {
     @SidedProxy(clientSide = "com.github.ericliucn.redmoon.proxy.ClientProxy", serverSide = "com.github.ericliucn.redmoon.proxy.ServerProxy", modId = MOD_ID)
     public static CommonProxy PROXY;
 
+    public static RMCreativeTab creativeTab = new RMCreativeTab("RedMoon");
+
 
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event) {

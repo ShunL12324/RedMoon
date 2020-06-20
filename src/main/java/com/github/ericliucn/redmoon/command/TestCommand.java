@@ -24,7 +24,8 @@ public class TestCommand extends CommandBase {
         if (sender instanceof EntityPlayerMP){
             EntityPlayerMP playerMP = ((EntityPlayerMP) sender);
             ItemStack itemStack = playerMP.getHeldItemMainhand();
-            playerMP.sendMessage(new TextComponentString(itemStack.getItem().getRegistryName().getPath()));
+            String message = itemStack.toString();
+            playerMP.sendMessage(new TextComponentString(message));
         }
     }
 
