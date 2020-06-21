@@ -48,7 +48,7 @@ dependencies {
     compile 'vazkii.botania:Botania:r1.10-363.148'
     compile 'org.spongepowered:spongeforge:1.12.2-2838-7.2.0:dev'
     annotationProcessor 'org.spongepowered:spongeforge:1.12.2-2838-7.2.0:dev'
-    deobfCompile 'net.industrial-craft:industrialcraft-2:2.8.219-ex112:dev'
+    deobfCompile 'net.industrial-craft:industrialcraft-2:2.8.219-ex112'
 }
 
 processResources {

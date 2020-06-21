@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {
+      "model": "redmoon:block_generator"
+    },
+    "mana": {
+      "model": "redmoon:block_generator"
+    },
+    "inventory": {
+      "model": "redmoon:block_generator"
+    },
+    "eu": {
+      "model": "redmoon:block_generator"
+    }
+  }
+}
