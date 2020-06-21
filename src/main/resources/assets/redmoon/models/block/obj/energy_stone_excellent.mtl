@@ -1,0 +1,3 @@
+newmtl primitive (Instance)
+Kd 1 1 1
+map_Kd redmoon:items/energy_stone_excellent

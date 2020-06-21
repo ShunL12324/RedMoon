@@ -1,3 +1,6 @@
+#creative tab
+itemGroup.RedMoon=RedMoon
+
 # item
 item.redmoon:energy_stone_common.name=Energy Stone
 item.redmoon:energy_stone_good.name=Energy Stone

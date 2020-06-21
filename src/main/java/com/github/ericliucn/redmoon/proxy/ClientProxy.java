@@ -16,8 +16,8 @@ public class ClientProxy extends CommonProxy{
 
     @Override
     public void preinit(FMLPreInitializationEvent event) {
-        super.preinit(event);
         OBJLoader.INSTANCE.addDomain(Main.MOD_ID);
+        super.preinit(event);
     }
 
     @Override

@@ -1,0 +1,43 @@
+{
+  "forge_marker": 1,
+  "custom": { "flip-v": true },
+  "defaults": {
+    "transform": {
+      "thirdperson_righthand": {
+        "scale":  0.04
+      },
+      "thirdperson_lefthand": {
+        "scale":  0.04
+      },
+      "firstperson_righthand": {
+        "rotation":  [ 0, 90, -25 ],
+        "scale":  0.04
+      },
+      "firstperson_lefthand": {
+        "rotation":  [ 0, 90, -25 ],
+        "scale":  0.04
+      },
+      "gui": {
+        "rotation":  [ -16, -23, -45 ],
+        "translation":  [ 0, 0, 0 ],
+        "scale": 0.08
+      },
+      "head": {
+        "translation":  [ 0, 15, 0 ]
+      },
+      "ground": {
+        "translation":  [ 0, 0, 0 ],
+        "scale":  0.03
+      },
+      "fixed": {
+        "scale": 0.08
+      }
+    }
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{
+      "model": "redmoon:obj/energy_stone_legend.obj"
+    }]
+  }
+}

@@ -11,6 +11,11 @@ buildscript {
     }
 }
 
+plugins{
+    id 'org.spongepowered.plugin' version '0.9.0'
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+
 apply plugin: "net.minecraftforge.gradle.forge"
 
 version = modVersion
@@ -34,11 +39,16 @@ repositories {
     mavenCentral()
     maven { url = "http://chickenbones.net/maven" }
     maven { url = "http://maven.blamejared.com/" }
+    maven { url = "http://maven.ic2.player.to/" }
 }
 
 dependencies {
     deobfCompile 'codechicken:CodeChickenLib:1.12.2-3.2.3.358:universal'
     deobfCompile 'vazkii.autoreglib:AutoRegLib:1.3-33.34'
+    compile 'vazkii.botania:Botania:r1.10-363.148'
+    compile 'org.spongepowered:spongeforge:1.12.2-2838-7.2.0:dev'
+    annotationProcessor 'org.spongepowered:spongeforge:1.12.2-2838-7.2.0:dev'
+    deobfCompile 'net.industrial-craft:industrialcraft-2:2.8.219-ex112:dev'
 }
 
 processResources {

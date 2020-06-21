@@ -7,6 +7,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.util.FakePlayer;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.common.item.inventory.util.ItemStackUtil;
 
 public class TestCommand extends CommandBase {
     @Override
@@ -24,8 +28,8 @@ public class TestCommand extends CommandBase {
         if (sender instanceof EntityPlayerMP){
             EntityPlayerMP playerMP = ((EntityPlayerMP) sender);
             ItemStack itemStack = playerMP.getHeldItemMainhand();
-            String message = itemStack.toString();
-            playerMP.sendMessage(new TextComponentString(message));
+            org.spongepowered.api.item.inventory.ItemStack spItem = ItemStackUtil.fromNative(itemStack);
+            System.out.println(spItem.toContainer());
         }
     }
 

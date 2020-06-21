@@ -1,3 +1,6 @@
+# creative tab
+itemGroup.RedMoon=赤月
+
 # item
 item.redmoon:energy_stone_common.name=能量晶石
 item.redmoon:energy_stone_good.name=能量晶石
