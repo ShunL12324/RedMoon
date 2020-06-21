@@ -13,6 +13,12 @@ public class ModItem {
     public static Item ITEM_ENERGY_STONE;
 
     public static void preInit(){
-        ITEM_ENERGY_STONE = new ItemEnergyStone("energy_stone", "energy_stone_common", "energy_stone_good", "energy_stone_excellent", "energy_stone_epic", "energy_stone_legend");//ITEM_CRYSTAL = new ItemCrystal("crystal");
+        ITEM_ENERGY_STONE = new ItemEnergyStone(
+                "energy_stone",
+                "energy_stone_common",
+                "energy_stone_good",
+                "energy_stone_excellent",
+                "energy_stone_epic",
+                "energy_stone_legend");
     }
 }
