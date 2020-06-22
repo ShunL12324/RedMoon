@@ -1,24 +1,23 @@
 package com.github.ericliucn.redmoon.blocks.tiles;
 
 import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.tile.IEnergyAcceptor;
-import ic2.api.energy.tile.IEnergyEmitter;
-import ic2.api.energy.tile.IEnergySource;
-import ic2.api.energy.tile.IEnergyTile;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import vazkii.arl.block.tile.TileSimpleInventory;
 
-public class TileGenerator extends TileSimpleInventory implements IEnergySource, IEnergyAcceptor, IEnergyTile , ITickable{
+public class TileGenerator extends TileSimpleInventory implements IMultiEnergySource,IEnergyAcceptor, ITickable{
 
     public int storage;
     private boolean addToEnet;
+    public final int outPut = 32;
 
     @Override
     public double getOfferedEnergy() {
-        return 10;
+        return this.outPut;
     }
 
     @Override
@@ -28,7 +27,7 @@ public class TileGenerator extends TileSimpleInventory implements IEnergySource,
 
     @Override
     public int getSourceTier() {
-        return 2;
+        return 6;
     }
 
     @Override
@@ -55,7 +54,26 @@ public class TileGenerator extends TileSimpleInventory implements IEnergySource,
     }
 
     @Override
+    public void onChunkUnload() {
+        super.onChunkUnload();
+        if (!this.world.isRemote){
+            this.addToEnet = !MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+        }
+    }
+
+    @Override
     public void update() {
         this.storage += 200;
+    }
+
+
+    @Override
+    public boolean sendMultipleEnergyPackets() {
+        return true;
+    }
+
+    @Override
+    public int getMultipleEnergyPacketAmount() {
+        return this.outPut/30000 + 1;
     }
 }
