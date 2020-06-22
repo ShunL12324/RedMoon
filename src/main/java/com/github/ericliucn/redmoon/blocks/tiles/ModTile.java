@@ -1,12 +1,13 @@
 package com.github.ericliucn.redmoon.blocks.tiles;
 
+import com.github.ericliucn.redmoon.Main;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModTile {
 
-    public static TileEntity TILE_GENERATOR;
-
     public static void preInit(){
-        TILE_GENERATOR = new TileGenerator();
+        GameRegistry.registerTileEntity(TileGenerator.class, new ResourceLocation(Main.MOD_ID, "block_generator"));
     }
 }
