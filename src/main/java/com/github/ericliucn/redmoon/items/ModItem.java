@@ -1,6 +1,5 @@
 package com.github.ericliucn.redmoon.items;
 
-import com.github.ericliucn.redmoon.Main;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;

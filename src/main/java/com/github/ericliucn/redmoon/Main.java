@@ -1,12 +1,12 @@
 package com.github.ericliucn.redmoon;
 
 import com.github.ericliucn.redmoon.proxy.CommonProxy;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.Mod;
 
 @Mod(
         modid = Main.MOD_ID,

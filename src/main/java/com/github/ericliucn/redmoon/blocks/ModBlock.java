@@ -9,8 +9,6 @@ public class ModBlock {
     public static void preInit(){
         BLOCK_GENERATOR = new BlockGenerator(
                 "block_generator",
-                Material.IRON,
-                "eu",
-                "mana");
+                Material.IRON);
     }
 }
