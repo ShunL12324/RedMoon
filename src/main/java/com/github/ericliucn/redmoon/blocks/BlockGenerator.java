@@ -42,14 +42,4 @@ public class BlockGenerator extends BlockMod {
         return true;
     }
 
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        super.breakBlock(worldIn, pos, state);
-        if (hasTileEntity(state)) {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity instanceof IEnergyTile) {
-                MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) tileEntity));
-            }
-        }
-    }
 }

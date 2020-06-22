@@ -3,16 +3,20 @@ package com.github.ericliucn.redmoon.blocks.tiles;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.*;
+import ic2.api.info.ILocatable;
+import ic2.api.info.Info;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import vazkii.arl.block.tile.TileSimpleInventory;
 
-public class TileGenerator extends TileSimpleInventory implements IMultiEnergySource,IEnergyAcceptor, ITickable{
+public class TileGenerator extends TileSimpleInventory implements ILocatable, IMultiEnergySource,IEnergyAcceptor, ITickable{
 
     public int storage;
-    private boolean addToEnet;
+    private boolean addedToEnet;
     public final int outPut = 32;
 
     @Override
@@ -47,23 +51,36 @@ public class TileGenerator extends TileSimpleInventory implements IMultiEnergySo
 
     @Override
     public void onLoad() {
-        super.onLoad();
-        if (!this.world.isRemote){
-            this.addToEnet = !MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+        if (!addedToEnet
+                && !getWorldObj().isRemote
+                && Info.isIc2Available()) {
+            MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+            addedToEnet = true;
         }
     }
 
     @Override
     public void onChunkUnload() {
-        super.onChunkUnload();
-        if (!this.world.isRemote){
-            this.addToEnet = !MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+        if (addedToEnet
+                && !getWorldObj().isRemote
+                && Info.isIc2Available()) {
+            MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+
+            addedToEnet = false;
         }
     }
 
     @Override
+    public void invalidate() {
+        super.invalidate();
+        this.onChunkUnload();
+    }
+
+    @Override
     public void update() {
-        this.storage += 200;
+        if (!addedToEnet){
+            onLoad();
+        }
     }
 
 
@@ -75,5 +92,15 @@ public class TileGenerator extends TileSimpleInventory implements IMultiEnergySo
     @Override
     public int getMultipleEnergyPacketAmount() {
         return this.outPut/30000 + 1;
+    }
+
+    @Override
+    public BlockPos getPosition() {
+        return this.getPos();
+    }
+
+    @Override
+    public World getWorldObj() {
+        return this.world;
     }
 }
