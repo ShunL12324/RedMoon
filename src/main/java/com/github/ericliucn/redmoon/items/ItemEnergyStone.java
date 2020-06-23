@@ -1,6 +1,9 @@
 package com.github.ericliucn.redmoon.items;
 
 import com.github.ericliucn.redmoon.Main;
+import ic2.api.info.IInfoProvider;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -28,7 +31,7 @@ public class ItemEnergyStone extends ItemMod implements IManaDissolvable {
     public ItemEnergyStone(String name, String... variants) {
         super(name, variants);
         this.setCreativeTab(Main.creativeTab);
-        this.setMaxStackSize(64);
+        this.setMaxStackSize(16);
     }
 
     @Override
@@ -59,6 +62,8 @@ public class ItemEnergyStone extends ItemMod implements IManaDissolvable {
 
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
+
+
 
     @Override
     public void onDissolveTick(IManaPool pool, ItemStack stack, EntityItem item) {
@@ -109,4 +114,6 @@ public class ItemEnergyStone extends ItemMod implements IManaDissolvable {
                 break;
         }
     }
+
+
 }

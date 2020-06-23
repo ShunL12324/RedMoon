@@ -11,7 +11,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 @Mod(
         modid = Main.MOD_ID,
         name = Main.MOD_NAME,
-        version = Main.VERSION
+        version = Main.VERSION,
+        dependencies = "required-after:ic2@[2.8.218,)"
 )
 public class Main {
 
