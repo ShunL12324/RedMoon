@@ -32,5 +32,5 @@ public class ClientProxy extends CommonProxy{
     public void serverstarting(FMLServerStartingEvent event) {
         super.serverstarting(event);
     }
-    
+
 }

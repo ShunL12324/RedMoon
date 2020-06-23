@@ -2,8 +2,10 @@
 itemGroup.RedMoon=RedMoon
 
 # item
-item.redmoon:energy_stone_common.name=Energy Stone
-item.redmoon:energy_stone_good.name=Energy Stone
-item.redmoon:energy_stone_excellent.name=Energy Stone
-item.redmoon:energy_stone_epic.name=Energy Stone
-item.redmoon:energy_stone_legend.name=Energy Stone
+item.redmoon:energy_stone_common.name=§6Energy Stone - common
+item.redmoon:energy_stone_good.name=§2Energy Stone - good
+item.redmoon:energy_stone_excellent.name=§3Energy Stone - excellent
+item.redmoon:energy_stone_epic.name=§5Energy Stone - epic
+item.redmoon:energy_stone_legend.name=§4Energy Stone - legend
+item.redmoon:gaia_pass_one.name=Gaia one pass
+item.redmoon:gaia_pass_two.name=Gaia two pass

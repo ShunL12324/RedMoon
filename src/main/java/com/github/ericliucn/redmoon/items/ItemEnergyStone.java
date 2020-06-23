@@ -41,25 +41,6 @@ public class ItemEnergyStone extends ItemMod implements IManaDissolvable {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        int meta = stack.getMetadata();
-        switch (meta){
-            case 0:
-                tooltip.add("- 普通");
-                break;
-            case 1:
-                tooltip.add("- 优质");
-                break;
-            case 2:
-                tooltip.add("- 稀有");
-                break;
-            case 3:
-                tooltip.add("- 史诗");
-                break;
-            case 4:
-                tooltip.add("- 传说");
-                break;
-        }
-
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
