@@ -34,8 +34,5 @@ public class CommonProxy {
         event.registerServerCommand(new TestCommand());
     }
 
-    public void registerItemModel(Item item, int meta, ModelResourceLocation location){
-
-    }
 
 }

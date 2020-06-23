@@ -32,9 +32,5 @@ public class ClientProxy extends CommonProxy{
     public void serverstarting(FMLServerStartingEvent event) {
         super.serverstarting(event);
     }
-
-    @Override
-    public void registerItemModel(Item item, int meta, ModelResourceLocation location) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, location);
-    }
+    
 }
