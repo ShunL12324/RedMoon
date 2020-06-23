@@ -1,12 +1,12 @@
 package com.github.ericliucn.redmoon;
 
 import com.github.ericliucn.redmoon.proxy.CommonProxy;
+import ic2.api.event.TeBlockFinalCallEvent;
+import ic2.core.block.TeBlockRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(
         modid = Main.MOD_ID,
@@ -29,6 +29,11 @@ public class Main {
     public static CommonProxy PROXY;
 
     public static RMCreativeTab creativeTab = new RMCreativeTab("RedMoon");
+
+    @Mod.EventHandler
+    public void start(FMLConstructionEvent event) {
+        PROXY.start(event);
+    }
 
 
     @Mod.EventHandler

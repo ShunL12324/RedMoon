@@ -1,11 +1,13 @@
 package com.github.ericliucn.redmoon.proxy;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 
 public class ServerProxy extends CommonProxy{
+
+    @Override
+    public void start(FMLConstructionEvent event) {
+        super.start(event);
+    }
 
     @Override
     public void preinit(FMLPreInitializationEvent event) {
