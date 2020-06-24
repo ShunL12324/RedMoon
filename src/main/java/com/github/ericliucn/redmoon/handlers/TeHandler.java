@@ -15,5 +15,6 @@ public class TeHandler {
     @SubscribeEvent
     public void teBlockFinalCall(TeBlockFinalCallEvent event){
         TeBlockRegistry.addAll(BlockAdminGenerator.class, BlockAdminGenerator.IDENTITY);
+        MinecraftForge.EVENT_BUS.unregister(this);
     }
 }

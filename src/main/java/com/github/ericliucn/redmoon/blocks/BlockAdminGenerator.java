@@ -19,38 +19,20 @@ import java.util.Set;
 
 public enum BlockAdminGenerator implements ITeBlock {
 
-    admin_generator(TileAdminGenerator.class, 0, false, Util.noFacings, true, HarvestTool.Pickaxe, DefaultDrop.Machine, 5, 10, EnumRarity.RARE, Material.IRON, false);
+    admin_generator(TileAdminGenerator.class, 0, false);
 
     private final Class<? extends TileEntityBlock> teClass;
     private final int ID;
     private final boolean hasActive;
-    private final Set<EnumFacing> possibleFacings;
-    private final boolean canBeWrenched;
-    private final HarvestTool tool;
-    private final DefaultDrop drop;
-    private final float hardness;
-    private final float explosionResistance;
-    private final EnumRarity rarity;
-    private final Material material;
-    private final boolean isTransparent;
     private TileEntityBlock dummyTe;
     private ITePlaceHandler placeHandler;
 
     public static final ResourceLocation IDENTITY = new ResourceLocation(Main.MOD_NAME, "machines");
 
-    BlockAdminGenerator(Class<? extends TileEntityBlock> teClass, int id, boolean hasActive, Set<EnumFacing> possibleFacings, boolean canBeWrenched, HarvestTool tool, DefaultDrop drop, float hardness, float explosionResistance, EnumRarity rarity, Material material, boolean isTransparent) {
+    BlockAdminGenerator(Class<? extends TileEntityBlock> teClass, int id, boolean hasActive) {
         this.teClass = teClass;
         this.ID = id;
         this.hasActive = hasActive;
-        this.possibleFacings = possibleFacings;
-        this.canBeWrenched = canBeWrenched;
-        this.tool = tool;
-        this.drop = drop;
-        this.hardness = hardness;
-        this.explosionResistance = explosionResistance;
-        this.rarity = rarity;
-        this.material = material;
-        this.isTransparent = isTransparent;
 
         TileEntity.register(Main.MOD_ID + ':' + getName(), TileAdminGenerator.class);
     }
@@ -78,37 +60,37 @@ public enum BlockAdminGenerator implements ITeBlock {
 
     @Override
     public Set<EnumFacing> getSupportedFacings() {
-        return possibleFacings;
+        return Util.allFacings;
     }
 
     @Override
     public float getHardness() {
-        return hardness;
+        return 5F;
     }
 
     @Override
     public float getExplosionResistance() {
-        return explosionResistance;
+        return 15F;
     }
 
     @Override
     public HarvestTool getHarvestTool() {
-        return null;
+        return HarvestTool.Pickaxe;
     }
 
     @Override
     public DefaultDrop getDefaultDrop() {
-        return null;
+        return DefaultDrop.Machine;
     }
 
     @Override
     public EnumRarity getRarity() {
-        return null;
+        return EnumRarity.RARE;
     }
 
     @Override
     public boolean allowWrenchRotating() {
-        return false;
+        return true;
     }
 
     @Nullable
@@ -119,12 +101,22 @@ public enum BlockAdminGenerator implements ITeBlock {
 
     @Override
     public String getName() {
-        return null;
+        return name();
     }
 
     @Override
     public int getId() {
         return 0;
+    }
+
+    @Override
+    public boolean isTransparent() {
+        return false;
+    }
+
+    @Override
+    public Material getMaterial() {
+        return Material.IRON;
     }
 
     public static void buildDummies() {
