@@ -5,19 +5,33 @@ import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.energy.tile.IMultiEnergySource;
 import ic2.api.tile.IEnergyStorage;
+import ic2.core.util.Util;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 
-public class TileAdminGenerator extends TileBase implements IEnergyStorage, IMultiEnergySource{
+public class TileAdminGenerator extends TileBase implements IMultiEnergySource{
 
-    public int stored = 400000000;
     public int tier = 6;
-    public int outPut = 100000;
-    public int inPut = 100000;
-    public int capacity = 800000000;
+    public int outPut = 0;
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound) {
+        super.readFromNBT(nbtTagCompound);
+        this.outPut = nbtTagCompound.getInteger("output");
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        nbt.setTag("output", new NBTTagInt(this.outPut));
+        return nbt;
+    }
+
 
     @Override
     public double getOfferedEnergy() {
-        return this.stored;
+        return this.outPut;
     }
 
     @Override
@@ -32,42 +46,7 @@ public class TileAdminGenerator extends TileBase implements IEnergyStorage, IMul
 
     @Override
     public boolean emitsEnergyTo(IEnergyAcceptor iEnergyAcceptor, EnumFacing enumFacing) {
-        return enumFacing == EnumFacing.EAST || enumFacing == EnumFacing.WEST;
-    }
-
-    @Override
-    public int getStored() {
-        return this.stored;
-    }
-
-    @Override
-    public void setStored(int i) {
-        this.stored = i;
-    }
-
-    @Override
-    public int addEnergy(int i) {
-        return this.inPut;
-    }
-
-    @Override
-    public int getCapacity() {
-        return this.capacity;
-    }
-
-    @Override
-    public int getOutput() {
-        return this.outPut;
-    }
-
-    @Override
-    public double getOutputEnergyUnitsPerTick() {
-        return this.outPut;
-    }
-
-    @Override
-    public boolean isTeleporterCompatible(EnumFacing enumFacing) {
-        return false;
+        return true;
     }
 
     @Override
