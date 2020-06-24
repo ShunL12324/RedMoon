@@ -1,11 +1,23 @@
 {
   "forge_marker": 1,
   "variants": {
+    "invalid": { "model": "cube" },
     "type": {
       "admin_generator": {
         "model": "redmoon:admin_generator"
+      },
+      "energy_polymerizer": {
+        "model": "redmoon:energy_polymerizer"
       }
     },
-    "inventory":[{}]
+    "inventory":[{}],
+    "facing": {
+      "down": { "x": 90 },
+      "up": { "x": 270 },
+      "north": { "transform": "forge:default-block" },
+      "south": { "y": 180 },
+      "west": { "y": 270 },
+      "east": { "y": 90 }
+    }
   }
 }

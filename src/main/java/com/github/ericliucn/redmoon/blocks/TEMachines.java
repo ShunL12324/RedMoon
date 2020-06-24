@@ -2,23 +2,30 @@ package com.github.ericliucn.redmoon.blocks;
 
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.blocks.tiles.TileAdminGenerator;
+import com.github.ericliucn.redmoon.blocks.tiles.TilePolymerizer;
+import ic2.core.block.BlockTileEntity;
 import ic2.core.block.ITeBlock;
 import ic2.core.block.TileEntityBlock;
+import ic2.core.item.block.ItemBlockTileEntity;
 import ic2.core.ref.TeBlock.DefaultDrop;
 import ic2.core.ref.TeBlock.HarvestTool;
 import ic2.core.ref.TeBlock.ITePlaceHandler;
 import ic2.core.util.Util;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public enum BlockAdminGenerator implements ITeBlock {
+public enum TEMachines implements ITeBlock  {
 
+    energy_polymerizer(TilePolymerizer.class, 1, false),
     admin_generator(TileAdminGenerator.class, 0, false);
 
     private final Class<? extends TileEntityBlock> teClass;
@@ -29,12 +36,12 @@ public enum BlockAdminGenerator implements ITeBlock {
 
     public static final ResourceLocation IDENTITY = new ResourceLocation(Main.MOD_NAME, "machines");
 
-    BlockAdminGenerator(Class<? extends TileEntityBlock> teClass, int id, boolean hasActive) {
+    TEMachines(Class<? extends TileEntityBlock> teClass, int id, boolean hasActive) {
         this.teClass = teClass;
         this.ID = id;
         this.hasActive = hasActive;
 
-        TileEntity.register(Main.MOD_ID + ':' + getName(), TileAdminGenerator.class);
+        TileEntity.register(Main.MOD_ID + ':' + getName(), this.teClass);
     }
 
     @Override
@@ -50,12 +57,12 @@ public enum BlockAdminGenerator implements ITeBlock {
     @Nullable
     @Override
     public Class<? extends TileEntityBlock> getTeClass() {
-        return teClass;
+        return this.teClass;
     }
 
     @Override
     public boolean hasActive() {
-        return false;
+        return this.hasActive;
     }
 
     @Override
@@ -96,17 +103,17 @@ public enum BlockAdminGenerator implements ITeBlock {
     @Nullable
     @Override
     public TileEntityBlock getDummyTe() {
-        return dummyTe;
+        return this.dummyTe;
     }
 
     @Override
     public String getName() {
-        return name();
+        return this.name();
     }
 
     @Override
     public int getId() {
-        return 0;
+        return this.ID;
     }
 
     @Override
@@ -119,8 +126,9 @@ public enum BlockAdminGenerator implements ITeBlock {
         return Material.IRON;
     }
 
+
     public static void buildDummies() {
- 		for (BlockAdminGenerator block : values()) {
+ 		for (TEMachines block : values()) {
  			//System.out.printf("Building %s (with teClass %s)%n", block.getName(), block.teClass);
  			if (block.teClass != null) {
  				try {
