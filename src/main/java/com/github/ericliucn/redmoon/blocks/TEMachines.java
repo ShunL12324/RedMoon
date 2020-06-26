@@ -62,7 +62,7 @@ public enum TEMachines implements ITeBlock  {
 
     @Override
     public Set<EnumFacing> getSupportedFacings() {
-        return Util.allFacings;
+        return Util.horizontalFacings;
     }
 
     @Override

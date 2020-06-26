@@ -16,7 +16,7 @@ public class InvSlotsCharge extends InvSlot implements IChargingSlot {
 
     @Override
     public boolean accepts(ItemStack stack) {
-        return stack.getItem() instanceof IElectricItem;
+        return ElectricItem.manager.charge(stack, Double.POSITIVE_INFINITY, 6, false, true) > 0;
     }
 
     @Override

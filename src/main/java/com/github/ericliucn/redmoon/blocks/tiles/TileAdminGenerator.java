@@ -14,7 +14,9 @@ import ic2.core.gui.dynamic.GuiParser;
 import ic2.core.gui.dynamic.IGuiValueProvider;
 import ic2.core.network.GuiSynced;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
@@ -30,7 +32,6 @@ public class TileAdminGenerator extends TileBase
     @GuiSynced
     public int outPut = 0;
     public InvSlotsCharge slots;
-    private int tick;
 
     public TileAdminGenerator(){
         super();
