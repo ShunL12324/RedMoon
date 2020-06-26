@@ -1,9 +1,6 @@
 package com.github.ericliucn.redmoon.proxy;
 
 import com.github.ericliucn.redmoon.Main;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.event.*;
 

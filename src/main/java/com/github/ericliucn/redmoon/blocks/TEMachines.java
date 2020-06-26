@@ -3,21 +3,16 @@ package com.github.ericliucn.redmoon.blocks;
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.blocks.tiles.TileAdminGenerator;
 import com.github.ericliucn.redmoon.blocks.tiles.TilePolymerizer;
-import ic2.core.block.BlockTileEntity;
 import ic2.core.block.ITeBlock;
 import ic2.core.block.TileEntityBlock;
-import ic2.core.item.block.ItemBlockTileEntity;
 import ic2.core.ref.TeBlock.DefaultDrop;
 import ic2.core.ref.TeBlock.HarvestTool;
 import ic2.core.ref.TeBlock.ITePlaceHandler;
 import ic2.core.util.Util;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -51,7 +46,7 @@ public enum TEMachines implements ITeBlock  {
 
     @Override
     public boolean hasItem() {
-        return false;
+        return true;
     }
 
     @Nullable

@@ -9,3 +9,6 @@ item.redmoon:energy_stone_epic.name=§5能量晶石 - 史诗
 item.redmoon:energy_stone_legend.name=§4能量晶石 - 传说
 item.redmoon:gaia_pass_one.name=盖亚一召唤许可券
 item.redmoon:gaia_pass_two.name=盖亚二召唤许可券
+
+# gui name
+redmoon.machines.admin_generator=管理员发电机

@@ -1,7 +1,6 @@
 package com.github.ericliucn.redmoon.items.ic2;
 
 import com.github.ericliucn.redmoon.items.ItemEnergyStone;
-import ic2.api.info.IInfoProvider;
 import ic2.core.util.ItemInfo;
 import net.minecraft.item.ItemStack;
 

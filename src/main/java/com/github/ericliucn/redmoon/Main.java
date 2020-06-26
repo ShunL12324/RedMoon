@@ -1,12 +1,9 @@
 package com.github.ericliucn.redmoon;
 
 import com.github.ericliucn.redmoon.proxy.CommonProxy;
-import ic2.api.event.TeBlockFinalCallEvent;
-import ic2.core.block.TeBlockRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(
         modid = Main.MOD_ID,
