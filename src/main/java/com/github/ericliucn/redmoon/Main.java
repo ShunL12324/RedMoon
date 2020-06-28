@@ -4,6 +4,7 @@ import com.github.ericliucn.redmoon.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.slf4j.Logger;
 
 @Mod(
@@ -17,6 +18,9 @@ public class Main {
     public static final String MOD_ID = "redmoon";
     public static final String MOD_NAME = "RedMoon";
     public static final String VERSION = "1.0";
+
+    //网络包
+    public static final SimpleNetworkWrapper NETWORK_WRAPPER = new SimpleNetworkWrapper(Main.MOD_NAME);
 
 
     // 模组的实例

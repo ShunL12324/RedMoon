@@ -7,6 +7,7 @@ import com.github.ericliucn.redmoon.handlers.EventHandler;
 import com.github.ericliucn.redmoon.handlers.GUIHandler;
 import com.github.ericliucn.redmoon.handlers.TEHandler;
 import com.github.ericliucn.redmoon.items.ModItem;
+import com.github.ericliucn.redmoon.network.PacketLoader;
 import com.github.ericliucn.redmoon.worldgen.OreGenerator;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -20,6 +21,7 @@ public class CommonProxy {
     public void preinit(FMLPreInitializationEvent event){
         new EventHandler();
         new GUIHandler();
+        new PacketLoader();
         ModItem.preInit();
         ModBlock.preInit();
     }
