@@ -12,11 +12,11 @@ public class InfoProvider extends ItemInfo {
             int meta = stack.getMetadata();
             switch (meta){
                 case 0:
-                    return 20000D;
+                    return 15000D;
                 case 1:
-                    return 200000D;
+                    return 50000D;
                 case 2:
-                    return 10000000D;
+                    return 500000D;
                 case 3:
                     return 20000000D;
                 case 4:

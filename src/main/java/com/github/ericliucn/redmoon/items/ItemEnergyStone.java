@@ -19,16 +19,16 @@ import java.util.List;
 
 public class ItemEnergyStone extends ItemMod implements IManaDissolvable {
 
-    private final int mana_common = 5000;
-    private final int mana_good = 10000;
-    private final int mana_excellent = 50000;
+    private final int mana_common = 500;
+    private final int mana_good = 5000;
+    private final int mana_excellent = 100000;
     private final int mana_epic = 500000;
     private final int mana_legend = 1000000;
 
     public ItemEnergyStone(String name, String... variants) {
         super(name, variants);
         this.setCreativeTab(Main.creativeTab);
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(64);
     }
 
     @Override

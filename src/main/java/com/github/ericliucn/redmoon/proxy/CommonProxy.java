@@ -7,10 +7,7 @@ import com.github.ericliucn.redmoon.handlers.EventHandler;
 import com.github.ericliucn.redmoon.handlers.GUIHandler;
 import com.github.ericliucn.redmoon.handlers.TEHandler;
 import com.github.ericliucn.redmoon.items.ModItem;
-import com.github.ericliucn.redmoon.worldgen.OreGenHandler;
-import com.github.ericliucn.redmoon.worldgen.TestGenerator;
-import com.github.ericliucn.redmoon.worldgen.WorldOreGenerator;
-import net.minecraftforge.common.MinecraftForge;
+import com.github.ericliucn.redmoon.worldgen.OreGenerator;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -29,7 +26,7 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event){
         TEMachines.buildDummies();
-        GameRegistry.registerWorldGenerator(new TestGenerator(), 0);
+        GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
         //new OreGenHandler();
     }
 

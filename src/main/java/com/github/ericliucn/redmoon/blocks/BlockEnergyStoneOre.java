@@ -28,7 +28,7 @@ public class BlockEnergyStoneOre extends BlockMod {
         this.setHardness(5F);
         this.setCreativeTab(Main.creativeTab);
         this.setHarvestLevel("pickaxe", 3);
-        this.setLightLevel(10F);
+        this.setLightLevel(15F);
         this.setResistance(20);
         this.setSoundType(SoundType.STONE);
     }
@@ -45,7 +45,7 @@ public class BlockEnergyStoneOre extends BlockMod {
 
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
-        return this.quantityDropped(random) + random.nextInt(fortune + 1);
+        return this.quantityDropped(random) + random.nextInt(fortune);
     }
 
     @Override
