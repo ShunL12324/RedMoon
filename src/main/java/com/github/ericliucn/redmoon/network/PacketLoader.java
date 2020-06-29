@@ -8,6 +8,6 @@ public class PacketLoader {
     private static int id = 1;
 
     public PacketLoader(){
-        Main.NETWORK_WRAPPER.registerMessage(MyMessage.MyMessageHandler.class, MyMessage.class, id++, Side.SERVER);
+        Main.NETWORK_WRAPPER.registerMessage(CommandMessage.CommandMessageHandler.class, CommandMessage.class, id++, Side.SERVER);
     }
 }

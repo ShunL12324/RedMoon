@@ -1,7 +1,7 @@
 package com.github.ericliucn.redmoon.command;
 
 import com.github.ericliucn.redmoon.Main;
-import com.github.ericliucn.redmoon.network.MyMessage;
+import com.github.ericliucn.redmoon.network.CommandMessage;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -23,8 +23,8 @@ public class TestCommand extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender instanceof EntityPlayerMP){
             EntityPlayerMP playerMP = ((EntityPlayerMP) sender);
-            MyMessage myMessage = new MyMessage("say hello");
-            Main.NETWORK_WRAPPER.sendToServer(myMessage);
+            CommandMessage commandMessage = new CommandMessage("say hello");
+            Main.NETWORK_WRAPPER.sendToServer(commandMessage);
             /*
             Chunk chunk = playerMP.world.getChunk(playerMP.getPosition());
             int ore = 0;
