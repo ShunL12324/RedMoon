@@ -5,20 +5,10 @@ import com.github.ericliucn.redmoon.items.ModItem;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import vazkii.arl.block.BlockMod;
-import vazkii.arl.interf.IModBlock;
 
-import java.util.List;
 import java.util.Random;
 
 public class BlockEnergyStoneOre extends BlockMod {

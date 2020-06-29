@@ -1,18 +1,11 @@
 package com.github.ericliucn.redmoon.network;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.server.FMLServerHandler;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.CommandSource;
-
-import java.util.Objects;
 
 public class CommandMessage implements IMessage {
 

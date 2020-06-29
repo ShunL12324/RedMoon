@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
         modid = Main.MOD_ID,
@@ -18,6 +18,7 @@ public class Main {
     public static final String MOD_ID = "redmoon";
     public static final String MOD_NAME = "RedMoon";
     public static final String VERSION = "1.0";
+
 
     //网络包
     public static final SimpleNetworkWrapper NETWORK_WRAPPER = new SimpleNetworkWrapper(Main.MOD_NAME);
