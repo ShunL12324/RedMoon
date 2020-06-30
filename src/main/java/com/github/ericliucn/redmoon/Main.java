@@ -5,13 +5,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import org.apache.logging.log4j.Logger;
 
 @Mod(
         modid = Main.MOD_ID,
         name = Main.MOD_NAME,
         version = Main.VERSION,
-        dependencies = "required-after:ic2@[2.8.218,)"
+        dependencies = "required-after:ic2@[2.8.218,); required-after:codechickenlib@[3.2.3.358,)"
 )
 public class Main {
 

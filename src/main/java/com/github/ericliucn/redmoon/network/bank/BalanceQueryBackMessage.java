@@ -1,8 +1,9 @@
-package com.github.ericliucn.redmoon.network;
+package com.github.ericliucn.redmoon.network.bank;
 
+import com.github.ericliucn.redmoon.client.guis.BankGUI;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -35,9 +36,14 @@ public class BalanceQueryBackMessage implements IMessage {
         @Override
         public IMessage onMessage(BalanceQueryBackMessage message, MessageContext ctx) {
             if (ctx.side.isClient()){
-                Minecraft.getMinecraft().ingameGUI.getChatGUI().addToSentMessages(String.valueOf(message.bal));
-                System.out.println(message.bal);
+                GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+                if (screen instanceof BankGUI){
+                    BankGUI bankGUI = ((BankGUI) screen);
+                    assert bankGUI != null;
+                    bankGUI.balance = message.bal;
+                }
             }
+
 
             return null;
         }

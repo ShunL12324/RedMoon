@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 public class GUIHandler implements IGuiHandler {
 
-    public static final int ADMIN_GENERATOR = 1;
+    public static final int BANK_GUI = 1;
 
     public GUIHandler(){
         NetworkRegistry.INSTANCE.registerGuiHandler(Main.INSTANCE, this);
@@ -20,8 +20,8 @@ public class GUIHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID){
-            case ADMIN_GENERATOR:
-                //return new AdminGeneratorContainer();
+            case BANK_GUI:
+                //return null;
             default:
                 return null;
         }
@@ -32,7 +32,8 @@ public class GUIHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID){
-            case ADMIN_GENERATOR:
+            case BANK_GUI:
+                //return new BankGUI(248, 166);
                 //return new AdminGeneratorGuiContainer(new AdminGeneratorContainer());
             default:
                 return null;

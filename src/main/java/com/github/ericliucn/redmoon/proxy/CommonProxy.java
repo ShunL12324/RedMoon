@@ -41,5 +41,10 @@ public class CommonProxy {
         event.registerServerCommand(new TestCommand());
     }
 
+    public void displayGUI(int ID){
+
+    }
+
+
 
 }

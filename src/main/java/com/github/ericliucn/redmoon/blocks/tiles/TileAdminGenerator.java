@@ -18,6 +18,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileAdminGenerator extends TileBase
         implements
@@ -96,6 +98,7 @@ public class TileAdminGenerator extends TileBase
         return DynamicContainer.create(this, entityPlayer, GuiParser.parse(this.teBlock));
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public GuiScreen getGui(EntityPlayer entityPlayer, boolean b) {
         return DynamicGui.create(this, entityPlayer, GuiParser.parse(this.teBlock));

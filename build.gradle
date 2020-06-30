@@ -17,6 +17,8 @@ plugins{
 }
 
 apply plugin: "net.minecraftforge.gradle.forge"
+apply plugin: 'java'
+apply plugin: 'idea'
 
 version = modVersion
 group = modGroup
@@ -35,6 +37,8 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+
+
 repositories {
     mavenCentral()
     maven { url = "http://chickenbones.net/maven" }
@@ -51,7 +55,11 @@ dependencies {
 }
 
 configurations {
-    runtime.exclude module:'industrialcraft-2:2.8.220-ex112'
+    runtime.exclude module:'industrialcraft-2:2.8.220-ex112:dev'
+}
+
+runClient{
+    args(['--username', 'Eric12324'])
 }
 
 processResources {

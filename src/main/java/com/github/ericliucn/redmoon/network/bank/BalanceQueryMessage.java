@@ -1,6 +1,5 @@
-package com.github.ericliucn.redmoon.network;
+package com.github.ericliucn.redmoon.network.bank;
 
-import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.sponge.EcoUtils;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,8 +8,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.spongepowered.api.entity.living.player.Player;
-
-import java.math.BigDecimal;
 
 public class BalanceQueryMessage implements IMessage {
 
