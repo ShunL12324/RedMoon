@@ -2,7 +2,7 @@ package com.github.ericliucn.redmoon.proxy;
 
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.client.guis.BankGUI;
-import com.github.ericliucn.redmoon.utils.GUIIDS;
+import com.github.ericliucn.redmoon.utils.References;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.event.*;
@@ -36,10 +36,13 @@ public class ClientProxy extends CommonProxy{
     }
 
     @Override
-    public void displayGUI(int ID) {
+    public void openGUI(int ID) {
         switch (ID){
-            case GUIIDS.BANK_GUI:
+            case References.BANK_GUI:
                 Minecraft.getMinecraft().displayGuiScreen(new BankGUI());
+                return;
+            default:
+                break;
         }
     }
 }

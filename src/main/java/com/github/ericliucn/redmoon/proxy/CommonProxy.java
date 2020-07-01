@@ -39,12 +39,12 @@ public class CommonProxy {
     public void serverstarting(FMLServerStartingEvent event){
         // 注册指令
         event.registerServerCommand(new TestCommand());
-    }
-
-    public void displayGUI(int ID){
 
     }
 
+    public void openGUI(int ID){
+
+    }
 
 
 }

@@ -36,12 +36,15 @@ public class BalanceQueryBackMessage implements IMessage {
         @Override
         public IMessage onMessage(BalanceQueryBackMessage message, MessageContext ctx) {
             if (ctx.side.isClient()){
-                GuiScreen screen = Minecraft.getMinecraft().currentScreen;
-                if (screen instanceof BankGUI){
-                    BankGUI bankGUI = ((BankGUI) screen);
-                    assert bankGUI != null;
-                    bankGUI.balance = message.bal;
-                }
+                Minecraft.getMinecraft().addScheduledTask(()->{
+                    GuiScreen screen = Minecraft.getMinecraft().currentScreen;
+                    if (screen instanceof BankGUI){
+                        BankGUI bankGUI = ((BankGUI) screen);
+                        assert bankGUI != null;
+                        bankGUI.balanceString = String.format("%.2f", message.bal);
+                        bankGUI.balance = message.bal;
+                    }
+                });
             }
 
 

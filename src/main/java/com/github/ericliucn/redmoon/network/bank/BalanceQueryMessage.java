@@ -38,19 +38,8 @@ public class BalanceQueryMessage implements IMessage {
 
             if (ctx.side.isServer()){
                 EntityPlayerMP playerMP = ctx.getServerHandler().player;
-                double bal;
-                if (!playerMP.world.isRemote){
-                    /*
-                    playerMP.getServerWorld().addScheduledTask(()->{
-                        BigDecimal bal = EcoUtils.getPlayerBalance((Player) playerMP, message.curName);
-                        BalanceQueryBackMessage message1 = new BalanceQueryBackMessage(bal.doubleValue());
-                        Main.NETWORK_WRAPPER.sendTo(message1, playerMP);
-                    });
-
-                     */
-                    bal = EcoUtils.getPlayerBalance((Player) playerMP, message.curName).doubleValue();
-                    return new BalanceQueryBackMessage(bal);
-                }
+                double bal = EcoUtils.getPlayerBalance((Player) playerMP, message.curName).doubleValue();
+                return new BalanceQueryBackMessage(bal);
             }
 
             return null;

@@ -1,10 +1,8 @@
 package com.github.ericliucn.redmoon.network;
 
 import com.github.ericliucn.redmoon.Main;
-import com.github.ericliucn.redmoon.utils.GUIIDS;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -36,7 +34,9 @@ public class GUIOpenMessage implements IMessage {
         @Override
         public IMessage onMessage(GUIOpenMessage message, MessageContext ctx) {
             if (ctx.side.isClient()){
-                Main.PROXY.displayGUI(message.ID);
+                Minecraft.getMinecraft().addScheduledTask(()->{
+                    Main.PROXY.openGUI(message.ID);
+                });
             }
             return null;
         }
