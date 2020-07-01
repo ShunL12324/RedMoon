@@ -47,8 +47,10 @@ public class TransactionMessage implements IMessage {
 
         @Override
         public IMessage onMessage(TransactionMessage message, MessageContext ctx) {
+            // check side
             if (ctx.side.isServer()){
                 EntityPlayerMP playerMP = ctx.getServerHandler().player;
+                // withdraw money
                 if (message.type.equals(References.TRANSACTION_WITHDRAW)) {
                     int bal = EcoUtils.getPlayerBalance((Player) playerMP, message.currency).intValue();
                     if (bal < message.amount || bal == 0){
@@ -62,7 +64,17 @@ public class TransactionMessage implements IMessage {
                     addEnergyStoneToInv(message.amount, playerMP);
 
                     return new TransactionResultMessage(References.TRANSACTION_SUCCESS, message.amount);
+                }
 
+                //deposit money
+                if (message.type.equals(References.TRANSACTION_DEPOSIT)){
+                    if (!EcoUtils.deposit((Player) playerMP, message.currency, message.amount)){
+                        return TransactionResultMessage.TRANSACTION_ERROR;
+                    }
+
+
+
+                    return new TransactionResultMessage(References.TRANSACTION_SUCCESS, message.amount);
                 }
             }
             return null;
@@ -91,5 +103,9 @@ public class TransactionMessage implements IMessage {
             EntityItem entityItem = new EntityItem(playerMP.world, playerMP.posX, playerMP.posY + 1, playerMP.posZ, toSpawn);
             playerMP.world.spawnEntity(entityItem);
         }
+    }
+
+    public static void removeStoneFromInv(Player player, int num){
+        player.getInventory()
     }
 }

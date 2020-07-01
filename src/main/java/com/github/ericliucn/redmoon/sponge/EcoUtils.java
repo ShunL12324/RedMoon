@@ -14,6 +14,8 @@ import org.spongepowered.api.service.economy.transaction.ResultType;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+
+// Invoke in server side only
 public class EcoUtils {
 
     public static BigDecimal getPlayerBalance(Player player, String currency){
@@ -57,6 +59,18 @@ public class EcoUtils {
         if (balance.compareTo(BigDecimal.valueOf(amount)) < 0) return false;
 
         return account.withdraw(cur, BigDecimal.valueOf(amount), Cause.of(EventContext.builder().add(EventContextKeys.PLAYER, player).build(), Main.INSTANCE)).getResult().equals(ResultType.SUCCESS);
+
+    }
+
+    public static boolean deposit(Player player, String currency, double amount){
+        EconomyService service = Sponge.getServiceManager().provideUnchecked(EconomyService.class);
+        Currency cur = getCurrency(service, currency);
+        Optional<UniqueAccount> optAccount = service.getOrCreateAccount(player.getUniqueId());
+        if (!optAccount.isPresent()) return false;
+
+        UniqueAccount account = optAccount.get();
+
+        return account.deposit(cur, BigDecimal.valueOf(amount), Cause.of(EventContext.builder().add(EventContextKeys.PLAYER, player).build(), Main.INSTANCE)).getResult().equals(ResultType.SUCCESS);
 
     }
 
