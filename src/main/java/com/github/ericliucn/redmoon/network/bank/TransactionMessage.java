@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -110,30 +111,34 @@ public class TransactionMessage implements IMessage {
             playerMP.sendMessage(
                     new TextComponentString("非法交易！请求交易数量与实际不符,将以实际扣除数量为准")
                             .setStyle(new Style().setColor(TextFormatting.DARK_RED)));
+        }
 
-            boolean result = EcoUtils.deposit(((Player) playerMP), message.currency, reduce);
-            if (result){
-                Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.DEPOSIT, Ref.SUCCESS), playerMP);
-            }else {
-                Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.DEPOSIT, Ref.ERROR), playerMP);
-                playerMP.inventory.addItemStackToInventory(new ItemStack(ModItem.ITEM_ENERGY_STONE, reduce, 0));
-            }
+        boolean result = EcoUtils.deposit(((Player) playerMP), message.currency, reduce);
+        if (result){
+            Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.DEPOSIT, Ref.SUCCESS), playerMP);
+        }else {
+            Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.DEPOSIT, Ref.ERROR), playerMP);
+            playerMP.inventory.addItemStackToInventory(new ItemStack(ModItem.ITEM_ENERGY_STONE, reduce, 0));
         }
     }
 
     public static void withdraw(EntityPlayerMP playerMP, TransactionMessage message){
         int amount = message.amount;
+        // get balance
         double balance = EcoUtils.getPlayerBalance(((Player) playerMP), message.currency).doubleValue();
+        // insufficient balance, return
         if (balance < amount){
             Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.GENERAL, Ref.ERROR), playerMP);
             return;
         }
 
+        // try transaction
         boolean transaction = EcoUtils.withdraw(((Player) playerMP), message.currency, amount);
 
         if (transaction) {
+            // success
             Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.WITHDRAW, Ref.SUCCESS), playerMP);
-            addEnergyStoneToInv(message.amount, playerMP);
+            addEnergyStoneToInv(amount, playerMP);
         } else {
             Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.WITHDRAW, Ref.ERROR), playerMP);
         }

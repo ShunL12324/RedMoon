@@ -42,7 +42,7 @@ public class ResultMessage implements IMessage {
     public void toBytes(ByteBuf buf) {
         buf.writeShort(this.mainType);
         buf.writeShort(this.subType);
-        buf.writeInt(this.resultCode);
+        buf.writeShort(this.resultCode);
     }
 
     public static class ResultMessageHandler implements IMessageHandler<ResultMessage, IMessage>{

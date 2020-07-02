@@ -1,9 +1,6 @@
 package com.github.ericliucn.redmoon.client.guis;
 
-import codechicken.lib.gui.GuiCCButton;
-import codechicken.lib.gui.GuiCCTextField;
-import codechicken.lib.gui.GuiScreenWidget;
-import codechicken.lib.gui.IGuiActionListener;
+import codechicken.lib.gui.*;
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.items.ModItem;
 import com.github.ericliucn.redmoon.network.bank.BalanceQueryMessage;
@@ -127,12 +124,12 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
         if (this.amount > this.balance ){
             this.withdrawButton.setEnabled(false);
             if(this.withdrawButton.pointInside(this.mouseX, this.mouseY)) {
-                fontRenderer.drawString("余额不足", this.mouseX + 5, this.mouseY, 0x990516, false);
+                GuiDraw.drawTip(mouseX, mouseY, "余额不足");
             }
         }else if (this.freeInvSpace < this.amount){
             this.withdrawButton.setEnabled(false);
             if (this.withdrawButton.pointInside(this.mouseX, this.mouseY)) {
-                fontRenderer.drawString("背包空间不足", this.mouseX + 5, this.mouseY, 0x990516, false);
+                GuiDraw.drawTip(mouseX, mouseY, "背包空间不足");
             }
         }else {
             this.withdrawButton.setEnabled(true);
@@ -141,7 +138,7 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
         if (this.energyStoneHold < this.amount){
             this.depositButton.setEnabled(false);
             if (this.depositButton.pointInside(this.mouseX, this.mouseY)) {
-                fontRenderer.drawString("晶石不足", mouseX + 5, mouseY, 0x990516, false);
+                GuiDraw.drawTip(mouseX, mouseY, "晶石不足");
             }
         }else {
             this.depositButton.setEnabled(true);
@@ -174,11 +171,15 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
                 if (this.amount <= this.balance){
                     Main.NETWORK_WRAPPER.sendToServer(new TransactionMessage(Ref.WITHDRAW, this.amount, "Coin"));
                 }
+                break;
             case "deposit":
                 refreshAmount();
                 refreshStoneHold();
                 if (this.energyStoneHold < this.amount) return;
                 Main.NETWORK_WRAPPER.sendToServer(new TransactionMessage(Ref.DEPOSIT, this.amount, "Coin"));
+                break;
+            default:
+                break;
         }
     }
 
