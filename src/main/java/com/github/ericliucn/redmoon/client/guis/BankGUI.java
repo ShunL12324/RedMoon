@@ -9,7 +9,7 @@ import com.github.ericliucn.redmoon.items.ModItem;
 import com.github.ericliucn.redmoon.network.bank.BalanceQueryMessage;
 import com.github.ericliucn.redmoon.network.bank.TransactionMessage;
 import com.github.ericliucn.redmoon.utils.InventoryHelper;
-import com.github.ericliucn.redmoon.utils.References;
+import com.github.ericliucn.redmoon.utils.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
@@ -172,8 +172,13 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
                 refreshAmount();
                 if (this.amount <= 0) return;
                 if (this.amount <= this.balance){
-                    Main.NETWORK_WRAPPER.sendToServer(new TransactionMessage(References.TRANSACTION_WITHDRAW, this.amount, "Coin"));
+                    Main.NETWORK_WRAPPER.sendToServer(new TransactionMessage(Ref.WITHDRAW, this.amount, "Coin"));
                 }
+            case "deposit":
+                refreshAmount();
+                refreshStoneHold();
+                if (this.energyStoneHold < this.amount) return;
+                Main.NETWORK_WRAPPER.sendToServer(new TransactionMessage(Ref.DEPOSIT, this.amount, "Coin"));
         }
     }
 

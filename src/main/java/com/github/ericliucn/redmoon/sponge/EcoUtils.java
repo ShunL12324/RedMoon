@@ -71,7 +71,10 @@ public class EcoUtils {
         UniqueAccount account = optAccount.get();
 
         return account.deposit(cur, BigDecimal.valueOf(amount), Cause.of(EventContext.builder().add(EventContextKeys.PLAYER, player).build(), Main.INSTANCE)).getResult().equals(ResultType.SUCCESS);
+    }
 
+    public static boolean ecoServicePresent(){
+        return Sponge.getServiceManager().provide(EconomyService.class).isPresent();
     }
 
 }

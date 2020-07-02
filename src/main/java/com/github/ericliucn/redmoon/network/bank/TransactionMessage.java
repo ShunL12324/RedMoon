@@ -1,12 +1,16 @@
 package com.github.ericliucn.redmoon.network.bank;
 
+import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.items.ModItem;
 import com.github.ericliucn.redmoon.sponge.EcoUtils;
-import com.github.ericliucn.redmoon.utils.References;
+import com.github.ericliucn.redmoon.utils.Ref;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -15,7 +19,7 @@ import org.spongepowered.api.entity.living.player.Player;
 
 public class TransactionMessage implements IMessage {
 
-    public String type;
+    public short type;
     public int amount;
     public String currency;
 
@@ -23,22 +27,28 @@ public class TransactionMessage implements IMessage {
 
     }
 
-    public TransactionMessage(String type, int amount, String currency){
+    public TransactionMessage(short type, int amount, String currency){
         this.type = type;
+        this.currency = currency;
+        this.amount = amount;
+    }
+
+    public TransactionMessage(int type, int amount, String currency){
+        this.type = (short) type;
         this.currency = currency;
         this.amount = amount;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.type = ByteBufUtils.readUTF8String(buf);
+        this.type = buf.readShort();
         this.currency = ByteBufUtils.readUTF8String(buf);
         this.amount = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        ByteBufUtils.writeUTF8String(buf, this.type);
+        buf.writeShort(this.type);
         ByteBufUtils.writeUTF8String(buf, this.currency);
         buf.writeInt(this.amount);
     }
@@ -50,32 +60,21 @@ public class TransactionMessage implements IMessage {
             // check side
             if (ctx.side.isServer()){
                 EntityPlayerMP playerMP = ctx.getServerHandler().player;
-                // withdraw money
-                if (message.type.equals(References.TRANSACTION_WITHDRAW)) {
-                    int bal = EcoUtils.getPlayerBalance((Player) playerMP, message.currency).intValue();
-                    if (bal < message.amount || bal == 0){
-                        return TransactionResultMessage.INSUFFICIENT_BALANCE;
+                playerMP.getServerWorld().addScheduledTask(()->{
+
+                    //check eco service present
+                    if (!EcoUtils.ecoServicePresent()){
+                        Main.NETWORK_WRAPPER.sendTo(new ResultMessage(1, 1, 2), playerMP);
                     }
 
-                    if (!EcoUtils.withdraw((Player) playerMP, message.currency, message.amount)){
-                        return TransactionResultMessage.TRANSACTION_ERROR;
+                    if (message.type == Ref.DEPOSIT){
+                        //deposit money
+                        deposit(playerMP, message);
+                    }else if (message.type == Ref.WITHDRAW) {
+                        //withdraw money
+                        withdraw(playerMP, message);
                     }
-
-                    addEnergyStoneToInv(message.amount, playerMP);
-
-                    return new TransactionResultMessage(References.TRANSACTION_SUCCESS, message.amount);
-                }
-
-                //deposit money
-                if (message.type.equals(References.TRANSACTION_DEPOSIT)){
-                    if (!EcoUtils.deposit((Player) playerMP, message.currency, message.amount)){
-                        return TransactionResultMessage.TRANSACTION_ERROR;
-                    }
-
-
-
-                    return new TransactionResultMessage(References.TRANSACTION_SUCCESS, message.amount);
-                }
+                });
             }
             return null;
         }
@@ -85,7 +84,7 @@ public class TransactionMessage implements IMessage {
         if (playerMP.world.isRemote) return;
         int freeSpace = 0;
         for (ItemStack itemStack:playerMP.inventory.mainInventory
-             ) {
+        ) {
             if (itemStack.isEmpty()){
                 freeSpace += 64;
             }else if (itemStack.isItemEqual(new ItemStack(ModItem.ITEM_ENERGY_STONE, 1, 0))){
@@ -105,7 +104,38 @@ public class TransactionMessage implements IMessage {
         }
     }
 
-    public static void removeStoneFromInv(Player player, int num){
-        player.getInventory()
+    public static void deposit(EntityPlayerMP playerMP, TransactionMessage message){
+        int reduce = playerMP.inventory.clearMatchingItems(ModItem.ITEM_ENERGY_STONE, 0, message.amount, null);
+        if (reduce != message.amount){
+            playerMP.sendMessage(
+                    new TextComponentString("非法交易！请求交易数量与实际不符,将以实际扣除数量为准")
+                            .setStyle(new Style().setColor(TextFormatting.DARK_RED)));
+
+            boolean result = EcoUtils.deposit(((Player) playerMP), message.currency, reduce);
+            if (result){
+                Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.DEPOSIT, Ref.SUCCESS), playerMP);
+            }else {
+                Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.DEPOSIT, Ref.ERROR), playerMP);
+                playerMP.inventory.addItemStackToInventory(new ItemStack(ModItem.ITEM_ENERGY_STONE, reduce, 0));
+            }
+        }
+    }
+
+    public static void withdraw(EntityPlayerMP playerMP, TransactionMessage message){
+        int amount = message.amount;
+        double balance = EcoUtils.getPlayerBalance(((Player) playerMP), message.currency).doubleValue();
+        if (balance < amount){
+            Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.GENERAL, Ref.ERROR), playerMP);
+            return;
+        }
+
+        boolean transaction = EcoUtils.withdraw(((Player) playerMP), message.currency, amount);
+
+        if (transaction) {
+            Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.WITHDRAW, Ref.SUCCESS), playerMP);
+            addEnergyStoneToInv(message.amount, playerMP);
+        } else {
+            Main.NETWORK_WRAPPER.sendTo(new ResultMessage(Ref.TRANSACTION, Ref.WITHDRAW, Ref.ERROR), playerMP);
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.github.ericliucn.redmoon.command;
 
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.network.GUIOpenMessage;
-import com.github.ericliucn.redmoon.utils.References;
+import com.github.ericliucn.redmoon.utils.Ref;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -24,7 +24,7 @@ public class TestCommand extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender instanceof EntityPlayerMP){
             EntityPlayerMP playerMP = ((EntityPlayerMP) sender);
-            Main.NETWORK_WRAPPER.sendTo(new GUIOpenMessage(References.BANK_GUI), playerMP);
+            Main.NETWORK_WRAPPER.sendTo(new GUIOpenMessage(Ref.BANK_GUI), playerMP);
         }
     }
 
