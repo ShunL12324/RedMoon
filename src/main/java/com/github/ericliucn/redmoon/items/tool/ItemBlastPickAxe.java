@@ -1,41 +1,23 @@
 package com.github.ericliucn.redmoon.items.tool;
 
 import com.github.ericliucn.redmoon.Main;
-import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.util.EnumHelper;
 import vazkii.arl.item.ItemModPickaxe;
-import vazkii.botania.api.item.ISequentialBreaker;
-import vazkii.botania.common.core.handler.ConfigHandler;
-import vazkii.botania.common.item.equipment.tool.elementium.ItemElementiumPick;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
+public class ItemBlastPickAxe extends ItemModPickaxe {
 
-public class BlastPickAxe extends ItemModPickaxe {
-
-    private static final List<Material> MATERIALS = Arrays.asList(Material.ROCK, Material.IRON, Material.ICE, Material.GLASS, Material.PISTON, Material.ANVIL, Material.GRASS, Material.GROUND, Material.SAND, Material.SNOW, Material.CRAFTED_SNOW, Material.CLAY);
-
-
-    public BlastPickAxe(String name, ToolMaterial material, String... variants) {
+    public ItemBlastPickAxe(String name, ToolMaterial material, String... variants) {
         super(name, material, variants);
         this.setHarvestLevel("pickaxe", 3);
         this.setMaxDamage(2200);
@@ -90,6 +72,7 @@ public class BlastPickAxe extends ItemModPickaxe {
                 if (!player.capabilities.isCreativeMode && block.removedByPlayer(state, player.world, pos, player, true)){
                     block.harvestBlock(player.world, player, pos, state, tileEntity, stack);
                     block.dropXpOnBlockBreak(player.world, pos, exp);
+                    stack.damageItem(1, player);
                 }else {
                     player.world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 }

@@ -1,6 +1,8 @@
 package com.github.ericliucn.redmoon.client.guis;
 
-import codechicken.lib.gui.*;
+import codechicken.lib.gui.GuiDraw;
+import codechicken.lib.gui.GuiScreenWidget;
+import codechicken.lib.gui.IGuiActionListener;
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.client.guis.cutomwidgets.GuiMyButton;
 import com.github.ericliucn.redmoon.client.guis.cutomwidgets.GuiMyTextField;

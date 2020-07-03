@@ -1,7 +1,7 @@
 package com.github.ericliucn.redmoon.items;
 
 import com.github.ericliucn.redmoon.items.ic2.InfoProvider;
-import com.github.ericliucn.redmoon.items.tool.BlastPickAxe;
+import com.github.ericliucn.redmoon.items.tool.ItemBlastPickAxe;
 import ic2.api.info.Info;
 import net.minecraft.item.Item;
 
@@ -26,7 +26,7 @@ public class ModItem {
                 "gaia_pass_one",
                 "gaia_pass_two"
         );
-        ITEM_BLAST_PICK_AXE = new BlastPickAxe(
+        ITEM_BLAST_PICK_AXE = new ItemBlastPickAxe(
                 "blast_pickaxe",
                 Item.ToolMaterial.DIAMOND
         );
