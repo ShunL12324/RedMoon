@@ -2,7 +2,7 @@
 <gui width="176" height="196">
 	<image x="0" y="0" width="176" height="196" basesize="256" src="redmoon:textures/guis/admin_generator"/>
 	<text y="7" align="center" >%name%</text>
-	<text y="32" align="center" color="708908">%base.outPut%</text>
+	<text y="32" align="center" color="13719296">%base.outPut%</text>
 
 	<slotgrid name="charge" x="8" y="84" spacing="2" rows="1" style="plain"/>
 

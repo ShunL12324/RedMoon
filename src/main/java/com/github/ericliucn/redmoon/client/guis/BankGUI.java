@@ -3,6 +3,7 @@ package com.github.ericliucn.redmoon.client.guis;
 import codechicken.lib.gui.*;
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.client.guis.cutomwidgets.GuiMyButton;
+import com.github.ericliucn.redmoon.client.guis.cutomwidgets.GuiMyTextField;
 import com.github.ericliucn.redmoon.items.ModItem;
 import com.github.ericliucn.redmoon.network.bank.BalanceQueryMessage;
 import com.github.ericliucn.redmoon.network.bank.TransactionMessage;
@@ -21,12 +22,10 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
     private static final ResourceLocation BACK_GROUND = new ResourceLocation("redmoon:textures/guis/back.png");
     public String balanceString;
     public double balance;
-    private static final String currentBal = "当前余额";
-    private static final String inputTip = "在上方输入你要存取的数额，只能输数字，回车确认";
     private int amount = 0;
     private int freeInvSpace;
     private int energyStoneHold;
-    private GuiCCTextField amountField;
+    private GuiMyTextField amountField;
     private GuiMyButton depositButton;
     private GuiMyButton withdrawButton;
     private EntityPlayerSP playerSP;
@@ -43,11 +42,11 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
 
     @Override
     public void addWidgets() {
-        depositButton = (GuiMyButton) new GuiMyButton(79, 120, 40, 20, "存入").setActionCommand("deposit");
+        depositButton = (GuiMyButton) new GuiMyButton(79, 110, 40, 20, "存入").setActionCommand("deposit");
         depositButton.setEnabled(false);
-        withdrawButton = (GuiMyButton) new GuiMyButton(129, 120, 40, 20, "取出").setActionCommand("withdraw");
+        withdrawButton = (GuiMyButton) new GuiMyButton(129, 110, 40, 20, "取出").setActionCommand("withdraw");
         withdrawButton.setEnabled(false);
-        amountField = new GuiCCTextField(84, 70, 80, 20, "")
+        amountField = (GuiMyTextField) new GuiMyTextField(84, 70, 80, 20, "")
                 .setAllowedCharacters("0123456789")
                 .setMaxStringLength(9)
                 .setActionCommand("setAmount");
@@ -85,11 +84,10 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
         GlStateManager.pushMatrix();
         {
             GlStateManager.scale(2F, 2F, 2F);
-            this.fontRenderer.drawString(currentBal, (this.xSize/2F - fontRenderer.getStringWidth(currentBal))/2F, 10, 0xffffff, false);
+            this.fontRenderer.drawString("当前余额", (this.xSize/2F - fontRenderer.getStringWidth("当前余额"))/2F, 10, 0xffffff, false);
             this.fontRenderer.drawString(this.balanceString, (this.xSize/2F - fontRenderer.getStringWidth(this.balanceString))/2F,22, 0xf5a402,false);
         }
         GlStateManager.popMatrix();
-        this.fontRenderer.drawString(inputTip, (this.xSize - fontRenderer.getStringWidth(inputTip))/2F, 100, 0x454445, false);
         refreshButtonStatus();
     }
 
@@ -119,6 +117,9 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
         if (this.amount == 0){
             this.withdrawButton.setEnabled(false);
             this.depositButton.setEnabled(false);
+            if (withdrawButton.pointInside(mouseX, mouseY) || depositButton.pointInside(mouseX, mouseY)){
+                GuiDraw.drawTip(mouseX, mouseY, "请先输入交易金额，只能为数字");
+            }
             return;
         }
 

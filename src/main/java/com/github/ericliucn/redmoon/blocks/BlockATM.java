@@ -27,6 +27,7 @@ public class BlockATM extends BlockMod {
         this.setHarvestLevel("pickaxe", 2);
         this.setResistance(50F);
         this.setSoundType(SoundType.METAL);
+        this.setLightLevel(15F);
         this.setDefaultState(this.getBlockState().getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
