@@ -9,10 +9,12 @@ item.redmoon:energy_stone_epic.name=§5能量晶石 - 史诗
 item.redmoon:energy_stone_legend.name=§4能量晶石 - 传说
 item.redmoon:gaia_pass_one.name=盖亚一召唤许可券
 item.redmoon:gaia_pass_two.name=盖亚二召唤许可券
+item.redmoon:blast_pickaxe.name=爆破镐
 
 # block
 tile.redmoon:atm.name=ATM
+tile.redmoon:energy_stone_ore.name=能量晶石矿石
 
 # gui name
 redmoon.machines.admin_generator=管理员发电机
-redmoon.machines.energy_polymerizer=能量聚合机
+redmoon.machines.energy_polymerizer=能量聚合器

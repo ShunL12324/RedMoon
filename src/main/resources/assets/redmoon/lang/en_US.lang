@@ -9,9 +9,11 @@ item.redmoon:energy_stone_epic.name=§5Energy Stone - epic
 item.redmoon:energy_stone_legend.name=§4Energy Stone - legend
 item.redmoon:gaia_pass_one.name=Gaia one pass
 item.redmoon:gaia_pass_two.name=Gaia two pass
+item.redmoon:blast_pickaxe.name=Blast Pickaxe
 
 # block
 tile.redmoon:atm.name=ATM
+tile.redmoon:energy_stone_ore.name=Energy Stone Ore
 
 # gui name
 redmoon.machines.admin_generator=Admin generator
