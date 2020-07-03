@@ -10,5 +10,9 @@ item.redmoon:energy_stone_legend.name=§4Energy Stone - legend
 item.redmoon:gaia_pass_one.name=Gaia one pass
 item.redmoon:gaia_pass_two.name=Gaia two pass
 
+# block
+tile.redmoon:atm.name=ATM
+
 # gui name
 redmoon.machines.admin_generator=Admin generator
+redmoon.machines.energy_polymerizer=Energy Polymerizer

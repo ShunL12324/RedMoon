@@ -1,8 +1,20 @@
 {
-  "_comment": "Generated using MiningMark48's JSON Generator.",
-  "variants": {
-    "normal": {
-      "model": "redmoon:atm"
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:orientable",
+    "textures": {
+      "side": "redmoon:blocks/atm_common",
+      "top": "redmoon:blocks/atm_common",
+      "front": "redmoon:blocks/atm_front"
     }
+  },
+  "variants": {
+    "facing": {
+      "west": {"y": 270},
+      "south": {"y": 180},
+      "east": {"y": 90},
+      "north": {}
+    },
+    "inventory": [{"transform": "forge:default-block"}]
   }
 }

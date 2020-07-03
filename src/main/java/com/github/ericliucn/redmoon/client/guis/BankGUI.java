@@ -2,6 +2,7 @@ package com.github.ericliucn.redmoon.client.guis;
 
 import codechicken.lib.gui.*;
 import com.github.ericliucn.redmoon.Main;
+import com.github.ericliucn.redmoon.client.guis.cutomwidgets.GuiMyButton;
 import com.github.ericliucn.redmoon.items.ModItem;
 import com.github.ericliucn.redmoon.network.bank.BalanceQueryMessage;
 import com.github.ericliucn.redmoon.network.bank.TransactionMessage;
@@ -17,7 +18,7 @@ import java.io.IOException;
 
 public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
 
-    private static final ResourceLocation BACK_GROUND = new ResourceLocation("redmoon:textures/guis/background.png");
+    private static final ResourceLocation BACK_GROUND = new ResourceLocation("redmoon:textures/guis/back.png");
     public String balanceString;
     public double balance;
     private static final String currentBal = "当前余额";
@@ -26,14 +27,14 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
     private int freeInvSpace;
     private int energyStoneHold;
     private GuiCCTextField amountField;
-    private GuiCCButton depositButton;
-    private GuiCCButton withdrawButton;
+    private GuiMyButton depositButton;
+    private GuiMyButton withdrawButton;
     private EntityPlayerSP playerSP;
     private int mouseX;
     private int mouseY;
 
     public BankGUI(){
-        this(248, 166);
+        this(248, 155);
     }
 
     public BankGUI(int xSize, int ySize){
@@ -42,9 +43,9 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
 
     @Override
     public void addWidgets() {
-        depositButton = new GuiCCButton(79, 120, 40, 20, "存入").setActionCommand("deposit");
+        depositButton = (GuiMyButton) new GuiMyButton(79, 120, 40, 20, "存入").setActionCommand("deposit");
         depositButton.setEnabled(false);
-        withdrawButton = new GuiCCButton(129, 120, 40, 20, "取出").setActionCommand("withdraw");
+        withdrawButton = (GuiMyButton) new GuiMyButton(129, 120, 40, 20, "取出").setActionCommand("withdraw");
         withdrawButton.setEnabled(false);
         amountField = new GuiCCTextField(84, 70, 80, 20, "")
                 .setAllowedCharacters("0123456789")
@@ -75,6 +76,7 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
     @Override
     public void drawBackground() {
         this.mc.renderEngine.bindTexture(BACK_GROUND);
+        GlStateManager.color(1,1,1);
         drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
     }
 
@@ -83,8 +85,8 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
         GlStateManager.pushMatrix();
         {
             GlStateManager.scale(2F, 2F, 2F);
-            this.fontRenderer.drawString(currentBal, (this.xSize/2F - fontRenderer.getStringWidth(currentBal))/2F, 10, 0x454445, false);
-            this.fontRenderer.drawString(this.balanceString, (this.xSize/2F - fontRenderer.getStringWidth(this.balanceString))/2F,22, 0x614a00,false);
+            this.fontRenderer.drawString(currentBal, (this.xSize/2F - fontRenderer.getStringWidth(currentBal))/2F, 10, 0xffffff, false);
+            this.fontRenderer.drawString(this.balanceString, (this.xSize/2F - fontRenderer.getStringWidth(this.balanceString))/2F,22, 0xf5a402,false);
         }
         GlStateManager.popMatrix();
         this.fontRenderer.drawString(inputTip, (this.xSize - fontRenderer.getStringWidth(inputTip))/2F, 100, 0x454445, false);
@@ -117,7 +119,6 @@ public class BankGUI extends GuiScreenWidget implements IGuiActionListener {
         if (this.amount == 0){
             this.withdrawButton.setEnabled(false);
             this.depositButton.setEnabled(false);
-            fontRenderer.drawString("请在上方输入交易数额", (this.xSize - fontRenderer.getStringWidth("请在上方输入交易数额"))/2F, 150F, 0x990516, false);
             return;
         }
 
