@@ -2,7 +2,7 @@ package com.github.ericliucn.redmoon.blocks;
 
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.blocks.tiles.TileAdminGenerator;
-import com.github.ericliucn.redmoon.blocks.tiles.TilePolymerizer;
+import com.github.ericliucn.redmoon.blocks.tiles.TileEnergyStoneUpdater;
 import ic2.core.block.ITeBlock;
 import ic2.core.block.TileEntityBlock;
 import ic2.core.ref.TeBlock.DefaultDrop;
@@ -20,7 +20,7 @@ import java.util.Set;
 
 public enum TEMachines implements ITeBlock  {
 
-    energy_polymerizer(TilePolymerizer.class, 1, false),
+    energy_stone_updater(TileEnergyStoneUpdater.class, 1, false),
     admin_generator(TileAdminGenerator.class, 0, false);
 
     private final Class<? extends TileEntityBlock> teClass;

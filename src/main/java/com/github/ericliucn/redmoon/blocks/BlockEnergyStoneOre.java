@@ -35,7 +35,8 @@ public class BlockEnergyStoneOre extends BlockMod {
 
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
-        return this.quantityDropped(random) + random.nextInt(fortune);
+        if (fortune + 1 <= 0) return 1;
+        return this.quantityDropped(random) + random.nextInt(fortune + 1);
     }
 
     @Override

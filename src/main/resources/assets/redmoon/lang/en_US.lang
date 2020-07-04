@@ -17,4 +17,4 @@ tile.redmoon:energy_stone_ore.name=Energy Stone Ore
 
 # gui name
 redmoon.machines.admin_generator=Admin generator
-redmoon.machines.energy_polymerizer=Energy Polymerizer
+redmoon.machines.energy_stone_updater=Energy Stone Updater

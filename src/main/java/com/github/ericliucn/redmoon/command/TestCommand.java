@@ -7,6 +7,8 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
 
 public class TestCommand extends CommandBase {
@@ -24,7 +26,9 @@ public class TestCommand extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender instanceof EntityPlayerMP){
             EntityPlayerMP playerMP = ((EntityPlayerMP) sender);
-            Main.NETWORK_WRAPPER.sendTo(new GUIOpenMessage(Ref.BANK_GUI), playerMP);
+            ItemStack stack = playerMP.getHeldItemMainhand();
+            stack.getItem().setMaxDamage(2200);
+            stack.setItemDamage(2000);
         }
     }
 

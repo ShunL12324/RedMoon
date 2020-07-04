@@ -8,6 +8,4 @@ public class EventHandler {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-
-
 }

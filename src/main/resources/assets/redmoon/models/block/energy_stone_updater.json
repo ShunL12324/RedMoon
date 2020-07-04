@@ -1,0 +1,54 @@
+{
+	"__comment": "Designed by Syjwlok with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "redmoon:blocks/energy_stone_updater_front",
+		"energy_stone_updater_common": "redmoon:blocks/energy_stone_updater_common",
+		"energy_stone_updater_front": "redmoon:blocks/energy_stone_updater_front"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#energy_stone_updater_common" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#energy_stone_updater_common" },
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#energy_stone_updater_front" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#energy_stone_updater_common" },
+				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#energy_stone_updater_common" },
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#energy_stone_updater_common" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 0, 2.5, 0 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"firstperson_righthand": {
+			"rotation":  [ 0, 45, 0 ],
+			"scale":  [ 0.4, 0.4, 0.4 ]
+		},
+		"firstperson_lefthand": {
+			"rotation":  [ 0, 45, 0 ],
+			"scale":  [ 0.4, 0.4, 0.4 ]
+		},
+		"gui": {
+			"rotation":  [ 30, 225, 0 ],
+			"scale":  [ 0.625, 0.625, 0.625 ]
+		},
+		"ground": {
+			"translation":  [ 0, 3, 0 ],
+			"scale":  [ 0.25, 0.25, 0.25 ]
+		},
+		"fixed": {
+			"scale":  [ 0.5, 0.5, 0.5 ]
+		}
+	}
+}

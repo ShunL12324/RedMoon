@@ -17,4 +17,4 @@ tile.redmoon:energy_stone_ore.name=能量晶石矿石
 
 # gui name
 redmoon.machines.admin_generator=管理员发电机
-redmoon.machines.energy_polymerizer=能量聚合器
+redmoon.machines.energy_stone_updater=能量晶石升级装置
