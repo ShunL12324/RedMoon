@@ -5,9 +5,6 @@
     "type": {
       "admin_generator": {
         "model": "redmoon:admin_generator"
-      },
-      "energy_stone_updater": {
-        "model": "redmoon:energy_stone_updater"
       }
     },
     "inventory":[{}],

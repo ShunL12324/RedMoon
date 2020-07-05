@@ -20,7 +20,6 @@ import java.util.Set;
 
 public enum TEMachines implements ITeBlock  {
 
-    energy_stone_updater(TileEnergyStoneUpdater.class, 1, false),
     admin_generator(TileAdminGenerator.class, 0, false);
 
     private final Class<? extends TileEntityBlock> teClass;
