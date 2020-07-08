@@ -2,6 +2,7 @@ package com.github.ericliucn.redmoon.proxy;
 
 import com.github.ericliucn.redmoon.Main;
 import com.github.ericliucn.redmoon.client.guis.BankGUI;
+import com.github.ericliucn.redmoon.client.guis.MainGUI;
 import com.github.ericliucn.redmoon.utils.Ref;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -40,7 +41,9 @@ public class ClientProxy extends CommonProxy{
         switch (ID){
             case Ref.BANK_GUI:
                 Minecraft.getMinecraft().displayGuiScreen(new BankGUI());
-                return;
+                break;
+            case Ref.MAIN_MENU:
+                Minecraft.getMinecraft().displayGuiScreen(new MainGUI());
             default:
                 break;
         }

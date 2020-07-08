@@ -14,10 +14,14 @@ public class ModItem {
 
     public static Item ITEM_ENERGY_STONE;
     public static Item ITEM_GAIA_PASS;
+    public static Item ITEM_ENERGY_ITEM;
+    public static Item ITEM_MAIN_GUI;
+
     public static Item ITEM_BLAST_PICK_AXE;
 
     public static void preInit(){
         Info.itemInfo = new InfoProvider();
+
         ITEM_ENERGY_STONE = new ItemEnergyStone(
                 "energy_stone",
                 "energy_stone_common",
@@ -36,6 +40,18 @@ public class ModItem {
         ITEM_BLAST_PICK_AXE = new ItemBlastPickAxe(
                 "blast_pickaxe",
                 ENERGY_STONE_MATERIAL
+        );
+
+        ITEM_ENERGY_ITEM = new ItemEnergyCore(
+                "energy_core",
+                "energy_core_one",
+                "energy_core_two",
+                "energy_core_three",
+                "energy_core_four"
+        );
+
+        ITEM_MAIN_GUI = new ItemMainGUI(
+                "main_gui"
         );
     }
 }

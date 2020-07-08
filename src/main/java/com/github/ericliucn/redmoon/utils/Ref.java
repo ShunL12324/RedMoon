@@ -3,6 +3,7 @@ package com.github.ericliucn.redmoon.utils;
 public class Ref {
 
     //GUI ID
+    public static final int MAIN_MENU = 0;
     public static final int BANK_GUI = 1;
 
     //Packet

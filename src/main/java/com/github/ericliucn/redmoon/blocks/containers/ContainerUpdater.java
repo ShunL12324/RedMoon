@@ -1,56 +1,72 @@
 package com.github.ericliucn.redmoon.blocks.containers;
 
-import codechicken.lib.inventory.container.ContainerSynchronised;
-import codechicken.lib.inventory.container.SlotDummy;
-import codechicken.lib.packet.PacketCustom;
+import com.github.ericliucn.redmoon.blocks.tiles.TileEnergyStoneUpdater;
+import com.github.ericliucn.redmoon.items.IIngredients;
+import com.github.ericliucn.redmoon.items.ModItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import vazkii.arl.container.slot.SlotIngredient;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.arl.container.ContainerBasic;
+import vazkii.arl.container.slot.SlotFiltered;
 
-import javax.annotation.Nonnull;
+public class ContainerUpdater extends ContainerBasic<TileEnergyStoneUpdater> {
 
-public class ContainerUpdater extends ContainerSynchronised {
-
-    private final World world;
-    private final BlockPos pos;
-    private final IItemHandler side;
+    private int progress;
+    private int stream;
 
     public ContainerUpdater(EntityPlayer player, World world, BlockPos pos) {
-        this.world = world;
-        this.pos = pos;
-
-        TileEntity tile = world.getTileEntity(pos);
-        Capability<IItemHandler> capability = CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-
-        this.side = tile.getCapability(capability, EnumFacing.NORTH);
+        super(player.inventory, ((TileEnergyStoneUpdater) world.getTileEntity(pos)));
+    }
 
 
+    @Override
+    public int addSlots() {
         for (int i = 0; i < 3; i++) {
-            addSlotToContainer(new SlotItemHandler(this.side, 0, 17, 18));
+            addSlotToContainer(new SlotFiltered(tile, 0, 21, 14, stack -> stack.getItem() instanceof IIngredients));
+            addSlotToContainer(new SlotFiltered(tile, 1, 68, 14, stack -> stack.getItem() instanceof IIngredients));
+            addSlotToContainer(new SlotFiltered(tile, 2, 21, 57, stack -> stack.getItem() instanceof IIngredients));
+            addSlotToContainer(new SlotFiltered(tile, 3, 68, 57, stack -> stack.getItem() instanceof IIngredients));
+            addSlotToContainer(new SlotFiltered(tile, 4, 44, 36, stack -> stack.getItem().equals(ModItem.ITEM_ENERGY_STONE)));
+            addSlotToContainer(new SlotFiltered(tile, 5, 134, 36, stack -> false));
         }
-
-        for(int i = 0; i < 3; ++i)
-            for(int j = 0; j < 9; ++j)
-                addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 114 + i * 18));
-
-        for(int k = 0; k < 9; ++k)
-            addSlotToContainer(new Slot(player.inventory, k, 8 + k * 18, 172));
+        return 6;
     }
 
     @Override
-    public PacketCustom createSyncPacket() {
-        return null;
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+        if (this.tile.getProgress() != this.progress || tile.getStream() != this.stream){
+            this.progress = tile.getProgress();
+            this.stream = tile.getStream();
+            for (IContainerListener listener:this.listeners
+                 ) {
+                listener.sendWindowProperty(this, 0, this.progress);
+                listener.sendWindowProperty(this, 1, this.stream);
+            }
+        }
+
     }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void updateProgressBar(int id, int data) {
+        if (id == 0){
+            this.progress = data;
+        }
+
+        if (id == 1){
+            this.stream = data;
+        }
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public int getStream() {
+        return stream;
+    }
 }

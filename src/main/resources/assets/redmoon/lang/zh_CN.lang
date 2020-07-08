@@ -14,6 +14,7 @@ item.redmoon:blast_pickaxe.name=爆破镐
 # block
 tile.redmoon:atm.name=ATM
 tile.redmoon:energy_stone_ore.name=能量晶石矿石
+tile.redmoon:energy_stone_updater.name=能量晶石升级器
 
 # gui name
 redmoon.machines.admin_generator=管理员发电机

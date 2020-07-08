@@ -123,7 +123,6 @@ public enum TEMachines implements ITeBlock  {
 
     public static void buildDummies() {
  		for (TEMachines block : values()) {
- 			//System.out.printf("Building %s (with teClass %s)%n", block.getName(), block.teClass);
  			if (block.teClass != null) {
  				try {
  					block.dummyTe = block.teClass.newInstance();

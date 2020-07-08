@@ -14,6 +14,7 @@ item.redmoon:blast_pickaxe.name=Blast Pickaxe
 # block
 tile.redmoon:atm.name=ATM
 tile.redmoon:energy_stone_ore.name=Energy Stone Ore
+tile.redmoon:energy_stone_updater.name=Energy Stone Updater
 
 # gui name
 redmoon.machines.admin_generator=Admin generator

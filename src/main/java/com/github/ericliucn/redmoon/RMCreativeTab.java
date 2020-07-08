@@ -1,5 +1,6 @@
 package com.github.ericliucn.redmoon;
 
+import com.github.ericliucn.redmoon.items.ModItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ public class RMCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(Items.ITEM_FRAME, 1);
+        return new ItemStack(ModItem.ITEM_ENERGY_STONE, 1, 4);
     }
 
     @Override
